@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Annuaire de Gael</title>
+</head>
+<body>
+    <input id="prenom" placeholder="Pénom" />
+    <input id="nom" placeholder="Nom" />
+    <input id="numero" placeholder="Numéro" />
+    <button id="ajouter">Ajouter un nouveau contact</button>
+<ul id="liste"></ul>
+
+    <input id="recherche" placeholder="Votre recherche" />
+    <button id="rechercher">Rechercher un contact</button>
+<ul id="resultats"></ul>
+	<script>
+        $liste = document.getElementById("liste");
+        $prenom = document.getElementById("prenom");
+        $nom = document.getElementById("nom");
+        $numero = document.getElementById("numero");
+        $ajouter = document.getElementById("ajouter");
+        $recherche = document.getElementById("recherche");
+        $rechercher = document.getElementById("rechercher");
+        $resultats = document.getElementById("resultats");
+        
+        contacts = [{
+            prenom: "Gaël",
+            nom: "Winandy",
+            numero: "0685233440"
+        }, {
+            prenom: "Théo",
+            nom: "Winandy",
+            numero: "0606060606"
+        }];
+        
+        function texteContact(contact) {
+            return contact.prenom + " " + contact.nom + " (" + contact.numero + ")";
+        }
+        
+        function afficherListe() {
+            elements = "";
+            for (i = 0; i < contacts.length; i++) {
+                elements += "<li>" + texteContact(contacts[i]) + "</li>";
+            }
+            $liste.innerHTML = elements;
+        }
+        
+        function ajouter() {
+            contacts.push({
+                prenom: $prenom.value,
+                nom: $nom.value,
+                numero: $numero.value
+            });
+            afficherListe();
+        }
+        
+        function rechercher() {
+            recherche = $recherche.value;
+            elements = "";
+            for (i = 0; i < contacts.length; i++) {
+                if (contacts[i].prenom == recherche || contacts[i].nom == recherche || contacts[i].numero == recherche) {
+                    elements += "<li>" + texteContact(contacts[i]) + "</li>";
+                }
+            }
+            $resultats.innerHTML = elements;
+        }
+        
+        $ajouter.onclick = ajouter;
+        $rechercher.onclick = rechercher;
+        afficherListe();
+	</script>
+<body>
+<html>
