@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'/>
+		<link rel="stylesheet" href="css\style.css" />
+		<title>Gael exercice 3</title>
+	</head>
+	<body>
+		<input id="texte" placeholder="Votre texte ici :" />
+		<button id="ajouter">Ajouter un élément</button>
+		<button id="annuler">Supprimer le dernier élément</button>
+		<ul id="liste"></ul>
+		
+		<script>
+$liste = document.getElementById("liste");
+$ajouter = document.getElementById("ajouter");
+$texte = document.getElementById("texte");
+$annuler = document.getElementById("annuler");
+
+var tableau = ["Gaël", "Théo", "Lou"];
+
+function afficherListe(){
+	elements='';
+	for (var i=0;i<tableau.length;i++){
+		elements += "<li>"+tableau[i]+"</li>" ;
+	}
+	$liste.innerHTML = elements;
+}
+
+function ajouterElement(){
+	tableau.push($texte.value);
+	$texte.value="";
+	afficherListe();
+}
+
+function annuler(){
+	tableau.pop();
+	$texte.value="";
+	afficherListe();
+}
+
+
+afficherListe();
+$ajouter.onclick = ajouterElement;
+$annuler.onclick = annuler;
+		</script>
+	</body>
+</html>
